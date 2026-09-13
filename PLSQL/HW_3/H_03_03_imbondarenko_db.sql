@@ -1,16 +1,16 @@
 
-/*Опис:
-Видалити потрібні об?єкти з корня своєї схеми та перед цим перенести їх в пакет UTIL.
-Деталі :
-Оголосити функці ї get_job_title, get_dep_name та процедуру del_jobs в спеці фі каці ї та ті ла пакета UTIL. 
-Потім ці 3 об?єкта які оголосили в пакеті - видалити в корні своєї схеми.
-Докласти виклик процедури та функції (які вже в пакеті ) і з домашнього завдання.*/
+/*РћРїРёСЃ:
+Р’РёРґР°Р»РёС‚Рё РїРѕС‚СЂС–Р±РЅС– РѕР±?С”РєС‚Рё Р· РєРѕСЂРЅСЏ СЃРІРѕС”С— СЃС…РµРјРё С‚Р° РїРµСЂРµРґ С†РёРј РїРµСЂРµРЅРµСЃС‚Рё С—С… РІ РїР°РєРµС‚ UTIL.
+Р”РµС‚Р°Р»С– :
+РћРіРѕР»РѕСЃРёС‚Рё С„СѓРЅРєС†С– С— get_job_title, get_dep_name С‚Р° РїСЂРѕС†РµРґСѓСЂСѓ del_jobs РІ СЃРїРµС†С– С„С– РєР°С†С– С— С‚Р° С‚С– Р»Р° РїР°РєРµС‚Р° UTIL. 
+РџРѕС‚С–Рј С†С– 3 РѕР±?С”РєС‚Р° СЏРєС– РѕРіРѕР»РѕСЃРёР»Рё РІ РїР°РєРµС‚С– - РІРёРґР°Р»РёС‚Рё РІ РєРѕСЂРЅС– СЃРІРѕС”С— СЃС…РµРјРё.
+Р”РѕРєР»Р°СЃС‚Рё РІРёРєР»РёРє РїСЂРѕС†РµРґСѓСЂРё С‚Р° С„СѓРЅРєС†С–С— (СЏРєС– РІР¶Рµ РІ РїР°РєРµС‚С– ) С– Р· РґРѕРјР°С€РЅСЊРѕРіРѕ Р·Р°РІРґР°РЅРЅСЏ.*/
 
 
---Специфікація
+--РЎРїРµС†РёС„С–РєР°С†С–СЏ
 create or replace PACKAGE util AS
 
-        gc_min_salary CONSTANT NUMBER := 2000; -- еонстанти оголошуються зверху
+        gc_min_salary CONSTANT NUMBER := 2000; -- РєРѕРЅСЃС‚Р°РЅС‚Рё РѕРіРѕР»РѕС€СѓСЋС‚СЊСЃСЏ Р·РІРµСЂС…Сѓ
 
         FUNCTION add_years(p_date IN DATE DEFAULT SYSDATE,
                            p_year IN NUMBER) RETURN DATE; 
@@ -23,7 +23,7 @@ create or replace PACKAGE util AS
         PROCEDURE add_new_jobs(p_job_id     IN VARCHAR2,
                               p_job_title  IN VARCHAR2,
                               p_min_salary IN NUMBER,
-                              p_max_salary IN NUMBER DEFAULT NULL, -- процедура відпрацює і повернене те що вкажемо
+                              p_max_salary IN NUMBER DEFAULT NULL, -- РїСЂРѕС†РµРґСѓСЂР° РІС–РґРїСЂР°С†СЋС” С– РїРѕРІРµСЂРЅРµРЅРµ С‚Рµ С‰Рѕ РІРєР°Р¶РµРјРѕ
                               po_err       OUT VARCHAR2);
                               
          PROCEDURE del_jobs (p_job_id     IN VARCHAR2,
@@ -80,9 +80,9 @@ END get_job_title;
 PROCEDURE add_new_jobs(p_job_id     IN VARCHAR2,
                        p_job_title  IN VARCHAR2,
                        p_min_salary IN NUMBER,
-                       p_max_salary IN NUMBER DEFAULT NULL, -- процедура відпрацює і повернене те що вкажемо
+                       p_max_salary IN NUMBER DEFAULT NULL, -- РїСЂРѕС†РµРґСѓСЂР° РІС–РґРїСЂР°С†СЋС” С– РїРѕРІРµСЂРЅРµРЅРµ С‚Рµ С‰Рѕ РІРєР°Р¶РµРјРѕ
                        po_err       OUT VARCHAR2) IS
-    v_max_salary jobs.max_salary%TYPE; -- змінні пишуться в процедурі після блоку з параметрами
+    v_max_salary jobs.max_salary%TYPE; --Р·РјС–РЅРЅС– РїРёС€СѓС‚СЊСЃСЏ РІ РїСЂРѕС†РµРґСѓСЂС– РїС–СЃР»СЏ Р±Р»РѕРєСѓ Р· РїР°СЂР°РјРµС‚СЂР°РјРё
     v_is_exist_job NUMBER;
     
 BEGIN
@@ -99,14 +99,14 @@ BEGIN
     WHERE j.job_id = p_job_id;
 
     IF ( p_min_salary < gc_min_salary OR p_max_salary < gc_min_salary ) THEN
-         po_err := 'Передана зарплата менша за 2000';
+         po_err := 'РџРµСЂРµРґР°РЅР° Р·Р°СЂРїР»Р°С‚Р° РјРµРЅС€Р° Р·Р° 2000';
     ELSIF v_is_exist_job >=1 THEN
-        po_err := 'Посада '||p_job_id||' вже і снує';
+        po_err := 'РџРѕСЃР°РґР° '||p_job_id||' РІР¶Рµ С– СЃРЅСѓС”';
     ELSE
         INSERT INTO jobs (job_id,job_title,min_salary,max_salary)
         VALUES (p_job_id,p_job_title,p_min_salary,v_max_salary);
 COMMIT;
-        po_err := 'Посада '||p_job_id||' успішно додана';
+        po_err := 'РџРѕСЃР°РґР° '||p_job_id||' СѓСЃРїС–С€РЅРѕ РґРѕРґР°РЅР°';
 
     END IF;
 
@@ -126,13 +126,13 @@ BEGIN
 
 
     IF v_count_job_id = 0 THEN
-        po_result := 'Посада ' || p_job_id || ' не і снує';
+        po_result := 'РџРѕСЃР°РґР° ' || p_job_id || ' РЅРµ С– СЃРЅСѓС”';
 
    ELSE
 
         DELETE from inna_dlw.jobs
         WHERE job_id = p_job_id;
-        po_result := 'Посада ' || p_job_id || ' успішно видалена';
+        po_result := 'РџРѕСЃР°РґР° ' || p_job_id || ' СѓСЃРїС–С€РЅРѕ РІРёРґР°Р»РµРЅР°';
 
 
    END IF;
@@ -144,7 +144,7 @@ END util;
 
 
 
---виклик
+--РІРёРєР»РёРє
 
 DECLARE
 v_result VARCHAR2(100);
