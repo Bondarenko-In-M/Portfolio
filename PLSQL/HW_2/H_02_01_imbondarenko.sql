@@ -1,28 +1,27 @@
 
-/*Створити PL-SQL блок, який по employee_id визначає посаду спі вробі тника.
-Деталі :
-Завести змі нну v_employee_id з типом даних, як у стовпчика employee_id в таблиці hr.employees,
-ві дразу присвоїти ці й змі нні й якесь значення (наприклад 110). Також завести
-змі нну v_job_id типу даних, як стовпчик job_id в таблиці hr.employees та змі нну v_job_title
-типу даних, як стовпчик job_title в таблиці hr.jobs. Далі в середині PL-SQL блоку, через
-окремі два запити (без JOIN-ні в) визначити посаду. Ві дразу по v_employee_id знаходимо і д посади, 
-значення через INTO записуємо в змі нну v_job_id. Наступним кроком по
-v_job_id, знаходимо job_title і записуємо значення в змі нну v_job_title через оператор INTO. 
-В кі нці PL-SQL блоку, виводимо і нформаці ю на екран і з змі ною v_job_title.
-Зберегти PL-SQL блок у файл пі д назвою H_02_01_tvoji_inichialy.sql. Загрузити в LMS Moodle.*/
---Варіант 1
+/*/*РЎС‚РІРѕСЂРёС‚Рё PL-SQL Р±Р»РѕРє, СЏРєРёР№ РїРѕ employee_id РІРёР·РЅР°С‡Р°С” РїРѕСЃР°РґСѓ СЃРїС– РІСЂРѕР±С– С‚РЅРёРєР°.
+Р”РµС‚Р°Р»С– :
+Р—Р°РІРµСЃС‚Рё Р·РјС– РЅРЅСѓ v_employee_id Р· С‚РёРїРѕРј РґР°РЅРёС…, СЏРє Сѓ СЃС‚РѕРІРїС‡РёРєР° employee_id РІ С‚Р°Р±Р»РёС†С– hr.employees,
+РІС– РґСЂР°Р·Сѓ РїСЂРёСЃРІРѕС—С‚Рё С†С– Р№ Р·РјС– РЅРЅС– Р№ СЏРєРµСЃСЊ Р·РЅР°С‡РµРЅРЅСЏ (РЅР°РїСЂРёРєР»Р°Рґ 110). РўР°РєРѕР¶ Р·Р°РІРµСЃС‚Рё
+Р·РјС– РЅРЅСѓ v_job_id С‚РёРїСѓ РґР°РЅРёС…, СЏРє СЃС‚РѕРІРїС‡РёРє job_id РІ С‚Р°Р±Р»РёС†С– hr.employees С‚Р° Р·РјС– РЅРЅСѓ v_job_title
+С‚РёРїСѓ РґР°РЅРёС…, СЏРє СЃС‚РѕРІРїС‡РёРє job_title РІ С‚Р°Р±Р»РёС†С– hr.jobs. Р”Р°Р»С– РІ СЃРµСЂРµРґРёРЅС– PL-SQL Р±Р»РѕРєСѓ, С‡РµСЂРµР·
+РѕРєСЂРµРјС– РґРІР° Р·Р°РїРёС‚Рё (Р±РµР· JOIN-РЅС– РІ) РІРёР·РЅР°С‡РёС‚Рё РїРѕСЃР°РґСѓ. Р’С– РґСЂР°Р·Сѓ РїРѕ v_employee_id Р·РЅР°С…РѕРґРёРјРѕ С– Рґ РїРѕСЃР°РґРё, 
+Р·РЅР°С‡РµРЅРЅСЏ С‡РµСЂРµР· INTO Р·Р°РїРёСЃСѓС”РјРѕ РІ Р·РјС– РЅРЅСѓ v_job_id. РќР°СЃС‚СѓРїРЅРёРј РєСЂРѕРєРѕРј РїРѕ
+v_job_id, Р·РЅР°С…РѕРґРёРјРѕ job_title С– Р·Р°РїРёСЃСѓС”РјРѕ Р·РЅР°С‡РµРЅРЅСЏ РІ Р·РјС– РЅРЅСѓ v_job_title С‡РµСЂРµР· РѕРїРµСЂР°С‚РѕСЂ INTO. 
+Р’ РєС– РЅС†С– PL-SQL Р±Р»РѕРєСѓ, РІРёРІРѕРґРёРјРѕ С– РЅС„РѕСЂРјР°С†С– СЋ РЅР° РµРєСЂР°РЅ С– Р· Р·РјС– РЅРѕСЋ v_job_title.*/
+--Р’Р°СЂС–Р°РЅС‚ 1
 DECLARE
         v_employee_id NUMBER := 120;
         v_job_id VARCHAR2(10); 
         v_job_title VARCHAR2(35);
 BEGIN
---виконати пошук job_id та записати у змінну v_job_id
+--РІРёРєРѕРЅР°С‚Рё РїРѕС€СѓРє job_id С‚Р° Р·Р°РїРёСЃР°С‚Рё Сѓ Р·РјС–РЅРЅСѓ v_job_id
         SELECT em.job_id
         INTO v_job_id
         FROM hr.employees em
         WHERE em.employee_id = v_employee_id; 
     --dbms_output.put_line(v_job_id);
--- виконати пошук job_title та записати у змінну v_job_title
+--РІРёРєРѕРЅР°С‚Рё РїРѕС€СѓРє job_title С‚Р° Р·Р°РїРёСЃР°С‚Рё Сѓ Р·РјС–РЅРЅСѓ v_job_title
         SELECT j.job_title
         INTO v_job_title
         FROM hr.jobs j
@@ -31,27 +30,27 @@ BEGIN
 END;
 /
 
--- Виконати перевірку
+-- Р’РёРєРѕРЅР°С‚Рё РїРµСЂРµРІС–СЂРєСѓ
 SELECT j.job_title
 FROM hr.employees em
     JOIN hr.jobs j
     ON em.job_id = j.job_id
 WHERE em.employee_id = 120;
 
-/*Варіант 2*/
+/*Р’Р°СЂС–Р°РЅС‚ 2*/
 
 DECLARE
         v_employee_id hr.employees.employee_id%TYPE := 120;
         v_job_id hr.employees.job_id%TYPE; 
         v_job_title hr.jobs.job_title%TYPE;
 BEGIN
---виконати пошук job_id та записати у змінну v_job_id
+--РІРёРєРѕРЅР°С‚Рё РїРѕС€СѓРє job_id С‚Р° Р·Р°РїРёСЃР°С‚Рё Сѓ Р·РјС–РЅРЅСѓ v_job_id
         SELECT em.job_id
         INTO v_job_id
         FROM hr.employees em
         WHERE em.employee_id = v_employee_id; 
     --dbms_output.put_line(v_job_id);
--- виконати пошук job_title та записати у змінну v_job_title
+-- РІРёРєРѕРЅР°С‚Рё РїРѕС€СѓРє job_title С‚Р° Р·Р°РїРёСЃР°С‚Рё Сѓ Р·РјС–РЅРЅСѓ v_job_title
         SELECT j.job_title
         INTO v_job_title
         FROM hr.jobs j
