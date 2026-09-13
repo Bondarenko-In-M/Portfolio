@@ -1,29 +1,27 @@
 
 
-/*«Ó·ËÚË ÏÂı‡Ì≥ÁÏ ˇÍËÈ ·Û‰Â ÓÌÓ‚Î˛‚‡ÚË ÍÓÊÌËÈ ‰ÂÌ¸ ‚ ¡ƒ, ”Í‡øÌÒ¸ÍËÈ 
-≥Ì‰ÂÍÒ Ï≥ Ê·‡ÌÍ≥ ‚Ò¸ÍËı ÒÚ‡‚ÓÍ Ó‚ÂÌ‡ÈÚ.
-ƒÂÚ‡Î≥ :
-ƒÎˇ ÚÓ„Ó ˘Ó· ÔÓ·‡˜ËÚË ”Í‡øÌÒ¸ÍËÈ ≥ Ì‰ÂÍÒ Ï≥ Ê·‡ÌÍ≥ ‚Ò¸ÍËı ÒÚ‡‚ÓÍ Ó‚ÂÌ‡ÈÚ, ‚ËÍÓËÒÚÓ‚Û∫ÏÓ API 
-‚≥ ‰ Õ¡”:
+/*–ó—Ä–æ–±–∏—Ç–∏ –º–µ—Ö–∞–Ω—ñ–∑–º —è–∫–∏–π –±—É–¥–µ –æ–Ω–æ–≤–ª—é–≤–∞—Ç–∏ –∫–æ–∂–Ω–∏–π –¥–µ–Ω—å –≤ –ë–î, –£–∫—Ä–∞—ó–Ω—Å—å–∫–∏–π 
+—ñ–Ω–¥–µ–∫—Å –º—ñ –∂–±–∞–Ω–∫—ñ –≤—Å—å–∫–∏—Ö —Å—Ç–∞–≤–æ–∫ –æ–≤–µ—Ä–Ω–∞–π—Ç.
+–î–µ—Ç–∞–ª—ñ :
+–î–ª—è —Ç–æ–≥–æ —â–æ–± –ø–æ–±–∞—á–∏—Ç–∏ –£–∫—Ä–∞—ó–Ω—Å—å–∫–∏–π —ñ –Ω–¥–µ–∫—Å –º—ñ –∂–±–∞–Ω–∫—ñ –≤—Å—å–∫–∏—Ö —Å—Ç–∞–≤–æ–∫ –æ–≤–µ—Ä–Ω–∞–π—Ç, –≤–∏–∫–æ—Ä–∏—Å—Ç–æ–≤—É—î–º–æ API 
+–≤—ñ –¥ –ù–ë–£:
 https://bank.gov.ua/NBU_uonia?id_api=UONIA_UnsecLoansDepo&json
-ƒ‡Î≥ ÒÚ‚Ó˛∫ÏÓ Ú‡·ÎËˆ≥ interbank_index_ua_history ‚ ¡ƒ Ô≥ ‰ ÒÚÛÍÚÛÛ ‚≥‰ÔÓ‚≥ ‰≥ JSON ÒÚÛÍÚÛË. 
-—Ú‚Ó˛∫ÏÓ view interbank_index_ua_v Ì‡
-ÓÒÌÓ‚≥ ‚ËÍÎËÍÛ API ˜ÂÂÁ ÙÛÌÍˆ≥ ˛ SYS.GET_NBU. 
-View interbank_index_ua_v ÔÓ‚ËÌÌ‡ ‚≥ ‰‡ÁÛ Ô‡ÒËÚË JSON ÒÚÛÍÚÛÛ ‚ ÓÍÂÏ≥ ÒÚÓ‚Ô˜ËÍË Á
-ÔÓÚ≥ ·ÌËÏ ÚËÔÓÏ ‰‡ÌËı. ƒ‡Î≥ ÒÚ‚Ó˛∫ÏÓ ÔÓˆÂ‰ÛÛ download_ibank_index_ua, ˇÍ‡ ÔÓ‚ËÌÌ‡
-‚ÒÚ‡‚ÎˇÚË ‰‡Ì≥ Á view interbank_index_ua_v ‚
-Ú‡·ÎËˆ˛ interbank_index_ua_history.
-œÓˆÂ‰ÛÛ download_ibank_index_ua ÒÚ‡‚ËÏÓ Ì‡ ¯Â‰ÛÎÂ Á ≥ ÌÚÂ‚‡ÎÓÏ ÍÓÊÂÌ ‰ÂÌ¸ ‚ 9 ‡ÌÍÛ
-«·ÂÂ„ÚË ÍÓ‰ ÒÚ‚ÓÂÌÌˇ ‚Ò≥ ı Ó·?∫ÍÚ≥ ‚, Û Ù‡ÈÎ Ô≥ ‰ Ì‡Á‚Ó˛ H_06_01_tvoji_inichialy.sql. 
-«‡„ÛÁËÚË ‚ LMS Moodle.*/
+–î–∞–ª—ñ —Å—Ç–≤–æ—Ä—é—î–º–æ —Ç–∞–±–ª–∏—Ü—ñ interbank_index_ua_history –≤ –ë–î –ø—ñ –¥ —Å—Ç—Ä—É–∫—Ç—É—Ä—É –≤—ñ–¥–ø–æ–≤—ñ –¥—ñ JSON —Å—Ç—Ä—É–∫—Ç—É—Ä–∏. 
+–°—Ç–≤–æ—Ä—é—î–º–æ view interbank_index_ua_v –Ω–∞
+–æ—Å–Ω–æ–≤—ñ –≤–∏–∫–ª–∏–∫—É API —á–µ—Ä–µ–∑ —Ñ—É–Ω–∫—Ü—ñ —é SYS.GET_NBU. 
+View interbank_index_ua_v –ø–æ–≤–∏–Ω–Ω–∞ –≤—ñ –¥—Ä–∞–∑—É –ø–∞—Ä—Å–∏—Ç–∏ JSON —Å—Ç—Ä—É–∫—Ç—É—Ä—É –≤ –æ–∫—Ä–µ–º—ñ —Å—Ç–æ–≤–ø—á–∏–∫–∏ –∑
+–ø–æ—Ç—Ä—ñ –±–Ω–∏–º —Ç–∏–ø–æ–º –¥–∞–Ω–∏—Ö. –î–∞–ª—ñ —Å—Ç–≤–æ—Ä—é—î–º–æ –ø—Ä–æ—Ü–µ–¥—É—Ä—É download_ibank_index_ua, —è–∫–∞ –ø–æ–≤–∏–Ω–Ω–∞
+–≤—Å—Ç–∞–≤–ª—è—Ç–∏ –¥–∞–Ω—ñ –∑ view interbank_index_ua_v –≤
+—Ç–∞–±–ª–∏—Ü—é interbank_index_ua_history.
+–ü—Ä–æ—Ü–µ–¥—É—Ä—É download_ibank_index_ua —Å—Ç–∞–≤–∏–º–æ –Ω–∞ —à–µ–¥—É–ª–µ—Ä –∑ —ñ –Ω—Ç–µ—Ä–≤–∞–ª–æ–º –∫–æ–∂–µ–Ω –¥–µ–Ω—å –≤ 9 —Ä–∞–Ω–∫—É*/
 
 
---SET DEFINE OFF; -- Ó‰ËÌ ‡Á Á‡ÔÛÒÚËÚË
+--SET DEFINE OFF; -- –æ–¥–∏–Ω —Ä–∞–∑ –∑–∞–ø—É—Å—Ç–∏—Ç–∏
 
 SELECT SYS.GET_NBU(p_url => 'https://bank.gov.ua/NBU_uonia?id_api=UONIA_UnsecLoansDepo&json') AS res
 FROM dual;
 
---ÒÚ‚Ó˛∫ÏÓ Ú‡·ÎËˆ≥ interbank_index_ua_history ‚ ¡ƒ Ô≥ ‰ ÒÚÛÍÚÛÛ ‚≥‰ÔÓ‚≥ ‰≥ JSON ÒÚÛÍÚÛË
+--—Å—Ç–≤–æ—Ä—é—î–º–æ —Ç–∞–±–ª–∏—Ü—ñ interbank_index_ua_history –≤ –ë–î –ø—ñ –¥ —Å—Ç—Ä—É–∫—Ç—É—Ä—É –≤—ñ–¥–ø–æ–≤—ñ –¥—ñ JSON —Å—Ç—Ä—É–∫—Ç—É—Ä–∏
 
 
 CREATE TABLE interbank_index_ua_history
@@ -35,8 +33,8 @@ CREATE TABLE interbank_index_ua_history
     
 SELECT * FROM interbank_index_ua_history;
 
-/*—Ú‚Ó˛∫ÏÓ view interbank_index_ua_v Ì‡
-ÓÒÌÓ‚≥ ‚ËÍÎËÍÛ API ˜ÂÂÁ ÙÛÌÍˆ≥ ˛ SYS.GET_NBU.*/
+/*–°—Ç–≤–æ—Ä—é—î–º–æ view interbank_index_ua_v –Ω–∞
+–æ—Å–Ω–æ–≤—ñ –≤–∏–∫–ª–∏–∫—É API —á–µ—Ä–µ–∑ —Ñ—É–Ω–∫—Ü—ñ —é SYS.GET_NBU.*/
 
 CREATE OR REPLACE view interbank_index_ua_v AS
 SELECT TO_DATE( j.dt, 'dd.mm.yyyy') AS dt, j.id_api, j.value, j.special
@@ -53,9 +51,9 @@ CROSS JOIN
     )
 ) j;
 
-/*ÒÚ‚Ó˛∫ÏÓ ÔÓˆÂ‰ÛÛ download_ibank_index_ua, ˇÍ‡ ÔÓ‚ËÌÌ‡
-‚ÒÚ‡‚ÎˇÚË ‰‡Ì≥ Á view interbank_index_ua_v ‚
-Ú‡·ÎËˆ˛ interbank_index_ua_history.*/
+/*—Å—Ç–≤–æ—Ä—é—î–º–æ –ø—Ä–æ—Ü–µ–¥—É—Ä—É download_ibank_index_ua, —è–∫–∞ –ø–æ–≤–∏–Ω–Ω–∞
+–≤—Å—Ç–∞–≤–ª—è—Ç–∏ –¥–∞–Ω—ñ –∑ view interbank_index_ua_v –≤
+—Ç–∞–±–ª–∏—Ü—é interbank_index_ua_history.*/
 
 
 CREATE OR REPLACE PROCEDURE download_ibank_index_ua IS
@@ -91,7 +89,7 @@ END;
 select * from interbank_index_ua_history;
 
 
--- œÓˆÂ‰ÛÛ download_ibank_index_ua ÒÚ‡‚ËÏÓ Ì‡ ¯Â‰ÛÎÂ Á ≥ ÌÚÂ‚‡ÎÓÏ ÍÓÊÂÌ ‰ÂÌ¸ ‚ 9 ‡ÌÍÛ
+-- –ü—Ä–æ—Ü–µ–¥—É—Ä—É download_ibank_index_ua —Å—Ç–∞–≤–∏–º–æ –Ω–∞ —à–µ–¥—É–ª–µ—Ä –∑ —ñ –Ω—Ç–µ—Ä–≤–∞–ª–æ–º –∫–æ–∂–µ–Ω –¥–µ–Ω—å –≤ 9 —Ä–∞–Ω–∫—É
 
 
 begin download_ibank_index_ua; end;
@@ -106,7 +104,7 @@ sys.dbms_scheduler.create_job(job_name => 'download_ibank_index',
                 job_class              => 'DEFAULT_JOB_CLASS',
                 enabled                => TRUE,
                 auto_drop              => FALSE,
-                comments               => 'ŒÌÓ‚ÎÂÌÌˇ ”Í‡øÌÒ¸ÍÓ„Ó ≥Ì‰ÂÍÒÛ Ï≥Ê·‡ÌÍ≥‚Ò¸ÍËı ÒÚ‡‚ÓÍ Ó‚ÂÌ‡ÈÚ');
+                comments               => '–û–Ω–æ–≤–ª–µ–Ω–Ω—è –£–∫—Ä–∞—ó–Ω—Å—å–∫–æ–≥–æ —ñ–Ω–¥–µ–∫—Å—É –º—ñ–∂–±–∞–Ω–∫—ñ–≤—Å—å–∫–∏—Ö —Å—Ç–∞–≤–æ–∫ –æ–≤–µ—Ä–Ω–∞–π—Ç');
 END;
 /
 
