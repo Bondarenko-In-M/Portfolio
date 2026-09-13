@@ -1,22 +1,20 @@
-/*Зробити потрі бний зві т і сформувати CSV файл на диску.
-Деталі :
-Зробити зві т на основі CSV файлу PROJECTS.csv (у файлі три рядка, тобто три 
-проєкти), 
-файл знаходиться у директорі ї FILES_FROM_SERVER, структура: project_id NUMBER,
+/*Р—СЂРѕР±РёС‚Рё РїРѕС‚СЂС– Р±РЅРёР№ Р·РІС– С‚ С– СЃС„РѕСЂРјСѓРІР°С‚Рё CSV С„Р°Р№Р» РЅР° РґРёСЃРєСѓ.
+Р”РµС‚Р°Р»С– :
+Р—СЂРѕР±РёС‚Рё Р·РІС– С‚ РЅР° РѕСЃРЅРѕРІС– CSV С„Р°Р№Р»Сѓ PROJECTS.csv (Сѓ С„Р°Р№Р»С– С‚СЂРё СЂСЏРґРєР°, С‚РѕР±С‚Рѕ С‚СЂРё 
+РїСЂРѕС”РєС‚Рё), 
+С„Р°Р№Р» Р·РЅР°С…РѕРґРёС‚СЊСЃСЏ Сѓ РґРёСЂРµРєС‚РѕСЂС– С— FILES_FROM_SERVER, СЃС‚СЂСѓРєС‚СѓСЂР°: project_id NUMBER,
 project_name
-VARCHAR2, department_id NUMBER). Необхі дний групований зві т в рамках трьох
-проєкті в, де треба показати назву департаменті в, кі лькі сть спі вробі тникі
-в, кі лькі сть уні кальних менеджері в та
-сумарна зарплата. SQL запит який формує остаточний зві т, треба завернути у 
-VIEW rep_project_dep_v і в середині цикла FOR, обов?язково використовувати 
-запит з rep_project_dep_v
-(просто селект в середині FOR через механі зм "FROM EXTERNAL" в середині
-PL-SQL блока буде сприйматися як синтаксична помилка. А через оболонку 
-VIEW - НІ). Отриманий зві т треба
-завантажити в директорі ю FILES_FROM_SERVER пі д назвою 
-TOTAL_PROJ_INDEX_tvoji_inichialy.csv
-Зберегти PL-SQL блок у файл пі д назвою H_05_02_tvoji_inichialy.sql. 
-Загрузити в LMS Moodle.*/
+VARCHAR2, department_id NUMBER). РќРµРѕР±С…С– РґРЅРёР№ РіСЂСѓРїРѕРІР°РЅРёР№ Р·РІС– С‚ РІ СЂР°РјРєР°С… С‚СЂСЊРѕС…
+РїСЂРѕС”РєС‚С– РІ, РґРµ С‚СЂРµР±Р° РїРѕРєР°Р·Р°С‚Рё РЅР°Р·РІСѓ РґРµРїР°СЂС‚Р°РјРµРЅС‚С– РІ, РєС– Р»СЊРєС– СЃС‚СЊ СЃРїС– РІСЂРѕР±С– С‚РЅРёРєС–
+РІ, РєС– Р»СЊРєС– СЃС‚СЊ СѓРЅС– РєР°Р»СЊРЅРёС… РјРµРЅРµРґР¶РµСЂС– РІ С‚Р°
+СЃСѓРјР°СЂРЅР° Р·Р°СЂРїР»Р°С‚Р°. SQL Р·Р°РїРёС‚ СЏРєРёР№ С„РѕСЂРјСѓС” РѕСЃС‚Р°С‚РѕС‡РЅРёР№ Р·РІС– С‚, С‚СЂРµР±Р° Р·Р°РІРµСЂРЅСѓС‚Рё Сѓ 
+VIEW rep_project_dep_v С– РІ СЃРµСЂРµРґРёРЅС– С†РёРєР»Р° FOR, РѕР±РѕРІ?СЏР·РєРѕРІРѕ РІРёРєРѕСЂРёСЃС‚РѕРІСѓРІР°С‚Рё 
+Р·Р°РїРёС‚ Р· rep_project_dep_v
+(РїСЂРѕСЃС‚Рѕ СЃРµР»РµРєС‚ РІ СЃРµСЂРµРґРёРЅС– FOR С‡РµСЂРµР· РјРµС…Р°РЅС– Р·Рј "FROM EXTERNAL" РІ СЃРµСЂРµРґРёРЅС–
+PL-SQL Р±Р»РѕРєР° Р±СѓРґРµ СЃРїСЂРёР№РјР°С‚РёСЃСЏ СЏРє СЃРёРЅС‚Р°РєСЃРёС‡РЅР° РїРѕРјРёР»РєР°. Рђ С‡РµСЂРµР· РѕР±РѕР»РѕРЅРєСѓ 
+VIEW - РќР†). РћС‚СЂРёРјР°РЅРёР№ Р·РІС– С‚ С‚СЂРµР±Р°
+Р·Р°РІР°РЅС‚Р°Р¶РёС‚Рё РІ РґРёСЂРµРєС‚РѕСЂС– СЋ FILES_FROM_SERVER РїС– Рґ РЅР°Р·РІРѕСЋ 
+TOTAL_PROJ_INDEX_tvoji_inichialy.csv*/
 
 CREATE TABLE projects_ext (
     project_id     NUMBER,
@@ -54,12 +52,12 @@ GROUP BY dep.department_name;
 
 CREATE OR REPLACE PROCEDURE WRITE_FILE_TO_DISK IS
         file_handle UTL_FILE.FILE_TYPE;
-        file_location VARCHAR2(200) := 'FILES_FROM_SERVER'; -- Назва створеної директорі ї
-        file_name VARCHAR2(200) := 'TOTAL_PROJ_INDEX__BIM.csv'; -- Ім'я файлу, який буде записаний
-        file_content VARCHAR2(4000); -- Вміст файлу
+        file_location VARCHAR2(200) := 'FILES_FROM_SERVER'; -- ГЌГ Г§ГўГ  Г±ГІГўГ®Г°ГҐГ­Г®Вї Г¤ГЁГ°ГҐГЄГІГ®Г°Ві Вї
+        file_name VARCHAR2(200) := 'TOTAL_PROJ_INDEX__BIM.csv'; -- ВІГ¬'Гї ГґГ Г©Г«Гі, ГїГЄГЁГ© ГЎГіГ¤ГҐ Г§Г ГЇГЁГ±Г Г­ГЁГ©
+        file_content VARCHAR2(4000); -- Г‚Г¬ВіГ±ГІ ГґГ Г©Г«Гі
         
 BEGIN
--- Отримати вміст файлу з бази даних
+-- РћС‚СЂРёРјР°С‚Рё РІРјС–СЃС‚ С„Р°Р№Р»Сѓ Р· Р±Р°Р·Рё РґР°РЅРёС…
     FOR cc IN (select dep.department_name ||','|| count (em.employee_id) || ','||
        count (DISTINCT em.manager_id) || ','||
        sum (em.salary) AS  file_content
@@ -69,20 +67,20 @@ ON em.department_id = dep.department_id
 INNER JOIN rep_project_dep rpd
 ON dep.department_id = rpd.department_id
 GROUP BY dep.department_name)LOOP
-    file_content := file_content || cc.file_content||CHR(10); -- CHR(10) перенесення на новий рядок
+    file_content := file_content || cc.file_content||CHR(10); -- CHR(10) РїРµСЂРµРЅРµСЃРµРЅРЅСЏ РЅР° РЅРѕРІРёР№ СЂСЏРґРѕРє
     
     END LOOP;
-    -- Відкрити файл для запису
-    file_handle := UTL_FILE.FOPEN(file_location, file_name, 'W'); --W операція -записати
-    -- Записати вмі ст файлу в файл на диск
+    --Р’С–РґРєСЂРёС‚Рё С„Р°Р№Р» РґР»СЏ Р·Р°РїРёСЃСѓ
+    file_handle := UTL_FILE.FOPEN(file_location, file_name, 'W'); --W РѕРїРµСЂР°С†С–СЏ -Р·Р°РїРёСЃР°С‚Рё
+    -- Р—Р°РїРёСЃР°С‚Рё РІРјС– СЃС‚ С„Р°Р№Р»Сѓ РІ С„Р°Р№Р» РЅР° РґРёСЃРє
     utl_file.put_raw(file_handle, UTL_RAW.CAST_TO_RAW(file_content));
-    -- Закрити файл
+    -- Р—Р°РєСЂРёС‚Рё С„Р°Р№Р»
     utl_file.fclose(file_handle);
     
 EXCEPTION
 
     WHEN OTHERS THEN
--- Обробка помилок, якщо необхі дно
+-- РћР±СЂРѕР±РєР° РїРѕРјРёР»РѕРє, СЏРєС‰Рѕ РЅРµРѕР±С…С– РґРЅРѕ
 
         RAISE;
 
@@ -94,7 +92,8 @@ END;
 
 
 
---Більш правильний варіант  коду
+--Р‘С–Р»СЊС€ РїСЂР°РІРёР»СЊРЅРёР№ РІР°СЂС–Р°РЅС‚  РєРѕРґСѓ
+
 
 CREATE VIEW total_proj_index_v AS
 SELECT ext_fl.project_id,
