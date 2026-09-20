@@ -23,7 +23,7 @@ create or replace package body log_utils as
 
 PROCEDURE to_log(p_appl_proc IN VARCHAR2,
                         p_message   IN VARCHAR2) IS
-    PRAGMA autonomous_transaction; --продура буде запускатись незалежно від батьківської транзакції
+    PRAGMA autonomous_transaction; -- РїСЂРѕС†РµРґСѓСЂР° Р±СѓРґРµ РІРёРєРѕРЅСѓРІР°С‚РёСЃСЊ РЅРµР·Р°Р»РµР¶РЅРѕ РІС–Рґ Р±Р°С‚СЊРєС–РІСЃСЊРєРѕС— С‚СЂР°РЅР·Р°РєС†С–С—
 BEGIN
     INSERT INTO logs(id, appl_proc, message)
     VALUES(log_seq.NEXTVAL, p_appl_proc, p_message);
@@ -43,7 +43,7 @@ BEGIN
   
     IF p_text IS NULL THEN
       
-       v_text  := 'Старт логування || p_proc_name';
+       v_text  := 'РЎС‚Р°СЂС‚ Р»РѕРіСѓРІР°РЅРЅСЏ, РЅР°Р·РІР° РїСЂРѕС†РµСЃСѓ = ' || p_proc_name;
     ELSE
        v_text  := p_text;
 
@@ -66,7 +66,7 @@ BEGIN
   
     IF p_text IS NULL THEN
       
-       v_text  :='Завершення логування || p_proc_name';
+       v_text  :='Р—Р°РІРµСЂС€РµРЅРЅСЏ Р»РѕРіСѓРІР°РЅРЅСЏ, РЅР°Р·РІР° РїСЂРѕС†РµСЃСѓ = '|| p_proc_name;
     ELSE
         v_text := p_text;
 
@@ -89,7 +89,7 @@ BEGIN
   
     IF p_text IS NULL THEN
       
-       v_text  :='В процедурі' || p_proc_name ||' сталася помилка. ' || p_sqlerrm;
+       v_text  :='Р’ РїСЂРѕС†РµРґСѓСЂС–' || p_proc_name ||' СЃС‚Р°Р»Р°СЃСЏ РїРѕРјРёР»РєР°. ' || p_sglerrm;
     ELSE
         v_text := p_text;
 
