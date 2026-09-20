@@ -8,7 +8,7 @@ BEGIN
   
     IF p_text IS NULL THEN
       
-       v_text  :='Завершення логування || p_proc_name';
+       v_text  :='Р—Р°РІРµСЂС€РµРЅРЅСЏ Р»РѕРіСѓРІР°РЅРЅСЏ, РЅР°Р·РІР° РїСЂРѕС†РµСЃСѓ = '|| p_proc_name;
     ELSE
         v_text := p_text;
 
