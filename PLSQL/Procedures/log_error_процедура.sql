@@ -9,7 +9,7 @@ BEGIN
   
     IF p_text IS NULL THEN
       
-       v_text  :='В процедурі' || p_proc_name ||' сталася помилка. ' || p_sqlerrm;
+       v_text  :=''Р’ РїСЂРѕС†РµРґСѓСЂС–' || p_proc_name ||' СЃС‚Р°Р»Р°СЃСЏ РїРѕРјРёР»РєР°. ' || p_sglerrm;
     ELSE
         v_text := p_text;
 
