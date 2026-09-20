@@ -8,7 +8,7 @@ BEGIN
   
     IF p_text IS NULL THEN
       
-       v_text  :='����� ��������� || p_proc_name';
+       v_text  :='Старт логування, назва процесу = ' додане до значення параметру p_proc_name;
     ELSE
         v_text := p_text;
 
