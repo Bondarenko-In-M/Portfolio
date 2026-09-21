@@ -1,13 +1,13 @@
 create or replace package log_utils is
 
  PROCEDURE log_start (p_proc_name IN VARCHAR2,
-                     p_text IN VARCHAR2 := NULL);
+                     p_text IN VARCHAR2 DEFAULT NULL);
                      
 PROCEDURE log_finish(p_proc_name IN VARCHAR2,
-                     p_text      IN VARCHAR2 := NULL);
+                     p_text      IN VARCHAR2 DEFAULT NULL);
                      
 PROCEDURE log_error(p_proc_name IN VARCHAR2,
-                    p_text      IN VARCHAR2 := NULL,
+                    p_text      IN VARCHAR2 DEFAULT NULL,
                     p_sqlerrm   IN VARCHAR2);
   
   
@@ -22,7 +22,7 @@ end log_utils;
 create or replace package body log_utils as
 
 PROCEDURE to_log(p_appl_proc IN VARCHAR2,
-                        p_message   IN VARCHAR2) IS
+                 p_message   IN VARCHAR2) IS
     PRAGMA autonomous_transaction; -- процедура буде виконуватись незалежно від батьківської транзакції
 BEGIN
     INSERT INTO logs(id, appl_proc, message)
@@ -34,7 +34,7 @@ END to_log;
 
 
 PROCEDURE log_start (p_proc_name IN VARCHAR2,
-                     p_text IN VARCHAR2 := NULL) is
+                     p_text      IN VARCHAR2 DEFAULT NULL) is
                                        
         v_text VARCHAR2(4000);
         
@@ -57,7 +57,7 @@ END log_start;
 
 
 PROCEDURE log_finish(p_proc_name IN VARCHAR2,
-                                       p_text      IN VARCHAR2 := NULL) is
+                     p_text      IN VARCHAR2 DEFAULT NULL) is
                                        
         v_text VARCHAR2(4000);
         
@@ -79,8 +79,8 @@ BEGIN
 END log_finish;
 
 PROCEDURE log_error(p_proc_name IN VARCHAR2,
-                                      p_text      IN VARCHAR2 := NULL,
-                                      p_sqlerrm   IN VARCHAR2) is
+                    p_text      IN VARCHAR2 DEFAULT NULL,
+                    p_sqlerrm   IN VARCHAR2) is
                                        
        v_text VARCHAR2(4000);
         
