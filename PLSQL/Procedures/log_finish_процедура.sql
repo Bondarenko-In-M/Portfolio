@@ -1,5 +1,5 @@
 CREATE OR REPLACE PROCEDURE log_finish(p_proc_name IN VARCHAR2,
-                                       p_text      IN VARCHAR2 := NULL) is
+                                       p_text      IN VARCHAR2 DEFAULT NULL) is
                                        
         v_text VARCHAR2(4000);
         
