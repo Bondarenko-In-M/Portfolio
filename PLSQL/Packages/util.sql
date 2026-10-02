@@ -455,7 +455,7 @@ END LOOP;
                
      IF TO_CHAR(SYSDATE, 'DY', 'NLS_DATE_LANGUAGE = AMERICAN') IN ('SAT', 'SUN')
             
-     OR TO_CHAR(SYSDATE, 'HH24:MI') NOT BETWEEN '18:01' AND '07:59' THEN
+     OR TO_CHAR(SYSDATE, 'HH24:MI') NOT BETWEEN '08:00' AND '18:00' THEN
            
          raise_application_error (-20001, 'Ви можете додавати нового співробітника лише в робочий час');
          
