@@ -66,7 +66,9 @@
                                  p_department_id  IN VARCHAR2);
                                       
 END util;
+
 /
+        
 CREATE OR REPLACE PACKAGE body util AS
 
         
@@ -441,16 +443,17 @@ END LOOP;
 END LOOP;
 
 
-          FOR rec IN (SELECT 1
-                      FROM jobs j
-                      WHERE j.job_id = p_job_id
-                      AND p_salary BETWEEN j.min_salary AND j.max_salary)
-     LOOP
-                -- Якщо запис знайдено, цикл виконається хоча б один раз
-           -- Якщо цикл не виконався жодного разу, значить записів немає
-         raise_application_error(-20001, 'Введено неприпустиму заробітну плату для даного коду посади');
-        
-END LOOP;
+          SELECT COUNT(*)
+          INTO v_count
+          FROM jobs j
+          WHERE j.job_id = p_job_id
+          AND p_salary BETWEEN j.min_salary AND j.max_salary;
+
+      IF v_count = 0 THEN
+              
+          raise_application_error(-20001, 'Введено неприпустиму заробітну плату для даного коду посади');
+
+END IF;
 
                
      IF TO_CHAR(SYSDATE, 'DY', 'NLS_DATE_LANGUAGE = AMERICAN') IN ('SAT', 'SUN')
