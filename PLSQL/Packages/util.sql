@@ -414,8 +414,9 @@ PROCEDURE add_employee(p_first_name     IN VARCHAR2,
                        p_commission_pct IN VARCHAR2 DEFAULT NULL,
                        p_manager_id     IN NUMBER DEFAULT 100,
                        p_department_id  IN VARCHAR2) is
-                                         
-        
+
+        v_count NUMBER;
+                                              
 BEGIN
  
        log_utils.log_start (p_proc_name => 'add_employee',
@@ -425,22 +426,20 @@ BEGIN
         FOR cc IN (SELECT 1
                    FROM jobs j
                    WHERE j.job_id = p_job_id
-                   HAVING COUNT(1) = 0) 
-    LOOP
+                   HAVING COUNT(1) = 0) LOOP
                
           raise_application_error(-20001, 'Введено неіснуючий код посади');
                 
-END LOOP;
+       END LOOP;
 
          FOR cc IN (SELECT 1
                     FROM departments dep
                     WHERE dep.department_id = p_department_id
-                    HAVING COUNT(1) = 0) 
-     LOOP
+                    HAVING COUNT(1) = 0) LOOP
                
           raise_application_error(-20001, 'Введено неіснуючий ідентифікатор відділу');
           
-END LOOP;
+        END LOOP;
 
 
           SELECT COUNT(*)
@@ -453,7 +452,7 @@ END LOOP;
               
           raise_application_error(-20001, 'Введено неприпустиму заробітну плату для даного коду посади');
 
-END IF;
+      END IF;
 
                
      IF TO_CHAR(SYSDATE, 'DY', 'NLS_DATE_LANGUAGE = AMERICAN') IN ('SAT', 'SUN')
@@ -462,7 +461,7 @@ END IF;
            
          raise_application_error (-20001, 'Ви можете додавати нового співробітника лише в робочий час');
          
- END IF;
+     END IF;
 
         INSERT INTO employee (employee_id, first_name, last_name,email,phone_number, hire_date,job_id,salary, commission_pct, manager_id,department_id)
         VALUES (emp_seq.NEXTVAL, p_first_name, p_last_name, p_email,p_phone_number,p_hire_date,p_job_id,p_salary,p_commission_pct,p_manager_id, p_department_id );     
