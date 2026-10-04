@@ -8,6 +8,8 @@ create or replace PROCEDURE add_employee(p_first_name     IN VARCHAR2,
                                          p_commission_pct IN VARCHAR2 DEFAULT NULL,
                                          p_manager_id     IN NUMBER DEFAULT 100,
                                          p_department_id  IN VARCHAR2) is
+
+           v_count NUMBER;
                                          
         
 BEGIN
